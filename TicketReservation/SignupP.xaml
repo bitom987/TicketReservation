@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:renderers="clr-namespace:TicketReservation.Renderers"
+             x:Class="TicketReservation.SignupP"
+             BackgroundColor="#171724">
+    <ContentPage.Content>
+        <StackLayout Margin="20"
+                     Spacing="15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="1.5*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Source="backicon.png"
+                       HorizontalOptions="Start"
+                       Grid.Column="0"
+                       Aspect="AspectFit">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="ImgBack" Tapped="ImgBack_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="ĐĂNG KÝ"
+                       TextColor="White"
+                       VerticalOptions="Start"
+                       HorizontalOptions="Center"
+                       FontSize="Title"
+                       Grid.Column="1" />
+            </Grid>
+            <Image Source="loginuser.png"
+                   Margin="0,40,0,0"
+                   HorizontalOptions="Center"
+                   HeightRequest="80"
+                   WidthRequest="80" />
+            <Label Text="SigmaCinema"
+                   Margin="0,40,0,20"
+                   TextColor="#009fe9"
+                   VerticalOptions="Start"
+                   FontSize="Large"
+                   HorizontalOptions="CenterAndExpand" />
+            <renderers:CustomEntry Placeholder="Email"
+                                       x:Name="EntEmail"
+                                       PlaceholderColor="#C0C0C0"
+                                       BackgroundColor="#7744c2" />
+            <BoxView HeightRequest="1"
+                     BackgroundColor="White"
+                     Margin="0,-15,0,20" />
+            <renderers:CustomEntry Placeholder="Mật khẩu"
+                                       x:Name="EntPassword"
+                                       IsPassword="True"
+                                       PlaceholderColor="#C0C0C0"
+                                       BackgroundColor="#7744c2" />
+            <BoxView HeightRequest="1"
+                     BackgroundColor="White"
+                     Margin="0,-15,0,20" />
+            <renderers:CustomEntry Placeholder="Nhập lại mật khẩu"
+                                       x:Name="EntConfirmPassword"
+                                       PlaceholderColor="#C0C0C0"
+                                       BackgroundColor="#7744c2" />
+            <BoxView HeightRequest="1"
+                     BackgroundColor="White"
+                     Margin="0,-15,0,20" />
+            <Button x:Name="SignupBtn" Text="Đăng Ký" Clicked="SignupBtnClicked" BackgroundColor="#7744c2" BorderRadius="10" Margin="0,10,0,20"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
