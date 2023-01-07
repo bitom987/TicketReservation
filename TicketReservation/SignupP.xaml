@@ -57,6 +57,7 @@
             <renderers:CustomEntry Placeholder="Nhập lại mật khẩu"
                                        x:Name="EntConfirmPassword"
                                        PlaceholderColor="#C0C0C0"
+                                       IsPassword="True"
                                        BackgroundColor="#7744c2" />
             <BoxView HeightRequest="1"
                      BackgroundColor="White"
