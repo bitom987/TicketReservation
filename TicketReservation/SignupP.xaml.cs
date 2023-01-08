@@ -29,6 +29,9 @@ namespace TicketReservation
             {
                 string email = EntEmail.Text;
                 string password = EntPassword.Text;
+                User user = new User();
+                user.Email = email;
+                user.Password = password;
                 string confpassword = EntConfirmPassword.Text;
                 if (String.IsNullOrEmpty(email) || String.IsNullOrEmpty(password))
                 {
@@ -45,7 +48,7 @@ namespace TicketReservation
                     await DisplayAlert("Thông báo", "Mật khẩu tối thiểu 6 ký tự", "Nhập lại");
                     return;
                 }
-                bool IsSave = await _userRepo.Register(email, password);
+                bool IsSave = await _userRepo.Register(user);
                 await DisplayAlert("Thông báo", "This:" + IsSave, "Ok");
                 if (IsSave)
                 {

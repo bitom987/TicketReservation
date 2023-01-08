@@ -24,7 +24,10 @@ namespace TicketReservation
             {
                 string email = EntEmail.Text;
                 string password = EntPassword.Text;
-                string token = await _userRepo.SignIn(email, password);
+                User user = new User();
+                user.Email = email;
+                user.Password = password;
+                string token = await _userRepo.SignIn(user);
                 await DisplayAlert("Token", token.ToString(), "Ok");
                 if (!string.IsNullOrEmpty(token))
                 {
@@ -59,11 +62,26 @@ namespace TicketReservation
         }
         private void ForgetPassBtn_Tapped(object sender, EventArgs e)
         {
-
+            Navigation.PushAsync(new ForgotPasswordP());
         }
         private void SignupBtn_Tapped(object sender, EventArgs e)
         {
             Navigation.PushAsync(new SignupP());
+        }
+        bool toogle = true;
+        private void ShowPasswordCheckedChanged(object sender, EventArgs e)
+        {
+            if (toogle)
+            {
+                EntPassword.IsPassword = false;
+                toogle= false;
+            }
+            else
+            {
+                EntPassword.IsPassword = true;
+                toogle= true;
+            }
+
         }
     }
 }

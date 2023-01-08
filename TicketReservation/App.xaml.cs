@@ -12,7 +12,7 @@ namespace TicketReservation
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new LoginP());
+            MainPage = new NavigationPage(new MoviesListP());
         }
 
         protected override void OnStart()

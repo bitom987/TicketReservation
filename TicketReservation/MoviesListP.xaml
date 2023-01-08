@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:renderers="clr-namespace:TicketReservation.Renderers"
+             x:Class="TicketReservation.MoviesListP"
+             BackgroundColor="#171724">
+    <ContentPage.Content>
+        <StackLayout>
+            <SearchBar Placeholder="Tìm kiếm" BackgroundColor="white"/>
+            <Label Text="Movies List"
+                HorizontalOptions="CenterAndExpand"
+                TextColor="white"
+                FontSize="Large"/>
+            <CollectionView x:Name="MoviesListView">
+                <CollectionView.EmptyView>
+                    <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="No Data" FontSize="Medium" TextColor="White"/>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Image Grid.Row="0"  Source="{Binding ImageUrl}"/>
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding Name}" TextColor="White"/>
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace TicketReservation
 {
@@ -18,28 +19,41 @@ namespace TicketReservation
         {
             authProvider = new FirebaseAuthProvider(new FirebaseConfig(webAPIkey));
         }
-        public async Task<bool> Register(string email, string password)
+        public async Task<bool> Register(User user)
         {
-            var token = await authProvider.CreateUserWithEmailAndPasswordAsync(email, password);
+            var token = await authProvider.CreateUserWithEmailAndPasswordAsync(user.Email, user.Password);
             // lưu uid mới tạo vào db
             var uid = token.User.LocalId;
-            await firebaseClient.Child(nameof(User)).Child(uid).PutAsync(JsonConvert.ToString(email));
-            // check uid đó còn tồn tại trong Auth không
+            await firebaseClient.Child(nameof(User)).Child(uid).PutAsync(JsonConvert.SerializeObject(user));
             // lưu email uid
             if (!string.IsNullOrEmpty(token.FirebaseToken))
-            {   
+            {
                 return true;
             }
-            return false; 
-        }   
-        public async Task<string> SignIn(string email, string password)
+            return false;
+        }
+        public async Task<string> SignIn(User user)
         {
-            var token = await authProvider.SignInWithEmailAndPasswordAsync(email, password);
+            var token = await authProvider.SignInWithEmailAndPasswordAsync(user.Email, user.Password);
             if (!string.IsNullOrEmpty(token.FirebaseToken))
             {
                 return token.FirebaseToken;
             }
             return "";
+        }
+        public async Task<bool> ResetPassword(User user)
+        {
+            await authProvider.SendPasswordResetEmailAsync(user.Email);
+            return true;
+        }
+        public async Task<User> GetInfoById()
+        {
+            string id="";
+            var savedfirebaseauth = JsonConvert.DeserializeObject<FirebaseAuth>(Preferences.Get("MyFirebaseRefreshToken", ""));
+            var refreshedcontent = await authProvider.RefreshAuthAsync(savedfirebaseauth);
+            Preferences.Set("MyFirebaseRefreshToken", JsonConvert.SerializeObject(refreshedcontent));
+            id = savedfirebaseauth.User.LocalId;
+            return (await firebaseClient.Child(nameof(User) + "/" + id).OnceSingleAsync<User>());
         }
     }
 
