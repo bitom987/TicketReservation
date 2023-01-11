@@ -91,7 +91,7 @@
                     </Grid>
                 </StackLayout>
                 <BoxView Grid.Row="2"  BackgroundColor="White" Opacity="0.2" HeightRequest="1" VerticalOptions="Start"/>
-                <Button Grid.Row="2" Margin="20,20,20,20" Text="Đặt vé" TextColor="White" WidthRequest="220" HeightRequest="40" 
+                <Button x:Name="BookBtn" Grid.Row="2" Margin="20,20,20,20" Text="Đặt vé" TextColor="White" WidthRequest="220" HeightRequest="40" 
                 CornerRadius="20" BackgroundColor="#9747FF"  HorizontalOptions="Center" VerticalOptions="Start" Clicked="BookTicketClicked"/>
             </Grid>
         </ScrollView>

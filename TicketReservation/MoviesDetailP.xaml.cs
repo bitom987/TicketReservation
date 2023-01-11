@@ -52,7 +52,6 @@ namespace TicketReservation
             _ticket.Ammount = ticket.Ammount;
             if(ticket.Ammount!=null) _ticketRepo.AddTicket(_ticket);
             await Navigation.PushAsync(new UserP(_ticket));
-            
         }
         private void TapVideo_Tapped(object sender, EventArgs e)
         {

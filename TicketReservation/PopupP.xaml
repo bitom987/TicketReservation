@@ -44,6 +44,7 @@
                         HeightRequest="40"
                         SelectedIndexChanged="AmmountSelected">
                 <Picker.Items>
+                    <x:String>0</x:String>
                     <x:String>1</x:String>
                     <x:String>2</x:String>
                     <x:String>3</x:String>
@@ -53,7 +54,6 @@
                     <x:String>7</x:String>
                     <x:String>8</x:String>
                     <x:String>9</x:String>
-                    <x:String>10</x:String>
                 </Picker.Items>
             </renderers:CustomPicker>
         </StackLayout>

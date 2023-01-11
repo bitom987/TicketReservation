@@ -46,6 +46,7 @@ namespace TicketReservation
             List<Movies> movies = new List<Movies>();
             foreach(var t in tickets)
             {
+                if(t.Ammount!="0")
                 movies.Add(await _moviesRepo.GetMovieById(t.MoviesId));
             }
             _user.Id = _ticket.UserId;
