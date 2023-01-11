@@ -28,7 +28,7 @@
                        FontSize="Title"
                        Grid.Column="1" />
             </Grid>
-            <Image Source="loginuser.png"
+            <Image Source="popcorn.png"
                    Margin="0,40,0,0"
                    HorizontalOptions="Center"
                    HeightRequest="80"

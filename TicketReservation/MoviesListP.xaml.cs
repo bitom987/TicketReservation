@@ -80,5 +80,37 @@ namespace TicketReservation
             MoviesListView.ItemsSource = movies.Where(s => s.Name.StartsWith(e.NewTextValue));
 
         }
+
+        private void TapAbout_Tapped(Object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new UserP(_ticket));
+        }
+        private void TapContact_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new InforP());
+        }
+        private void TapLogout_Tapped(object sender, EventArgs e)
+        {
+            Application.Current.MainPage = new NavigationPage(new LoginP());
+        }
+        private async void CloseHamBurgerMenu()
+        {
+            await SlMenu.TranslateTo(-250, 0, 400, Easing.Linear);
+            GridOverlay.IsVisible = false;
+        }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            CloseHamBurgerMenu();
+        }
+        private async void TapMenu_Tapped(object sender, EventArgs e)
+        {
+            GridOverlay.IsVisible = true;
+            await SlMenu.TranslateTo(0, 0, 400, Easing.Linear);
+        }
+        private void TapCloseMenu_Tapped(object sender, EventArgs e)
+        {
+            CloseHamBurgerMenu();
+        }
     }
 }

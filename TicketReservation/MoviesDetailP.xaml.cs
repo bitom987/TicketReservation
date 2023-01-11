@@ -50,8 +50,7 @@ namespace TicketReservation
         {
            var ticket = await Navigation.ShowPopupAsync(new PopupP(_ticket));
             _ticket.Ammount = ticket.Ammount;
-            if(_ticket.Ammount!=null)
-            _ticketRepo.AddTicket(_ticket);
+            if(ticket.Ammount!=null) _ticketRepo.AddTicket(_ticket);
             await Navigation.PushAsync(new UserP(_ticket));
             
         }

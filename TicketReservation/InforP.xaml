@@ -7,7 +7,16 @@
         <StackLayout Margin="20" 
                      Spacing="15" 
                      >
-                <Image Source="contact.png" HeightRequest="100" />
+            <Image Source="backicon.png"
+                       HorizontalOptions="Start"
+                       Grid.Column="0"
+                       Grid.Row="0"
+                       Aspect="AspectFit">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="ImgBack" Tapped="ImgBack_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Source="contact.png" HeightRequest="100" />
             <StackLayout Margin="0,20,0,0">
                 <Label Text="Địa chỉ" 
                     Margin="0, 20, 0 ,0"

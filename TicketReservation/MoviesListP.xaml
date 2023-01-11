@@ -22,60 +22,133 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <SearchBar Placeholder="Tìm kiếm" BackgroundColor="white" TextChanged="SearchMovie_TextChanged"/>
-            
-            <StackLayout Padding="5">
-                <Label Text="Phim nổi bật"
+        <Grid>
+            <StackLayout Grid.Row="0">
+                <Image Source="menuicon.png"
+                       Grid.Column="0"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center"
+                       Margin="10">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="TapMenu" Tapped="TapMenu_Tapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <SearchBar Margin="10" Placeholder="Tìm kiếm" BackgroundColor="white" TextChanged="SearchMovie_TextChanged"/>
+
+                <StackLayout Padding="5">
+                    <Label Text="Phim nổi bật"
                 HorizontalOptions="CenterAndExpand"
                 TextColor="white"
                 FontSize="Large"/>
-                <CarouselView x:Name="Carousel" HeightRequest="300" IndicatorView="IndicatorView">
-                    <CarouselView.ItemTemplate>
-                        <DataTemplate>
-                            <Image Margin="15" Source="{Binding ImageUrl}">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer x:Name="ImgTrailer" Tapped="ImgTrailer_Tapped"/>
-                                </Image.GestureRecognizers>
-                            </Image>
-                        </DataTemplate>
-                    </CarouselView.ItemTemplate>
-                </CarouselView>
-                <IndicatorView x:Name="IndicatorView" Margin="10"
+                    <CarouselView x:Name="Carousel" HeightRequest="300" IndicatorView="IndicatorView">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <Image Margin="15" Source="{Binding ImageUrl}">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer x:Name="ImgTrailer" Tapped="ImgTrailer_Tapped"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                    <IndicatorView x:Name="IndicatorView" Margin="10"
                     IndicatorColor="DodgerBlue"
                     SelectedIndicatorColor="DarkGray"
                     IndicatorSize="10"
                     VerticalOptions="Center"
                     />
-            </StackLayout>
-            <Label Text="Phim đang chiếu"
+                </StackLayout>
+                <Label Text="Phim đang chiếu"
                 HorizontalOptions="CenterAndExpand"
                 TextColor="white"
                 FontSize="Large"/>
-            <CollectionView x:Name="MoviesListView"
+                <CollectionView x:Name="MoviesListView"
                             SelectionMode="Single"
                             SelectionChanged="CollectionView_MovieSelected">
-                <CollectionView.EmptyView>
-                    <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="No Data" FontSize="Medium" TextColor="White"/>
-                </CollectionView.EmptyView>
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" HorizontalItemSpacing="10" VerticalItemSpacing="10" Span="2"></GridItemsLayout>
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="300" />
-                                <RowDefinition Height="50" />
-                            </Grid.RowDefinitions>
-                            <Image  Grid.Row="0" Margin="10" Source="{Binding ImageUrl}" WidthRequest="50" HeightRequest="300" VerticalOptions="Start" Aspect="Fill"/>
-                            <StackLayout Grid.Row="1" Margin="10,-10,10,0" Orientation="Vertical">
-                                <Label Text="{Binding Name}" TextColor="White" FontSize="Subtitle"/>
-                            </StackLayout>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </StackLayout>
+                    <CollectionView.EmptyView>
+                        <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="No Data" FontSize="Medium" TextColor="White"/>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" HorizontalItemSpacing="10" VerticalItemSpacing="10" Span="2"></GridItemsLayout>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="300" />
+                                    <RowDefinition Height="50" />
+                                </Grid.RowDefinitions>
+                                <Image  Grid.Row="0" Margin="10" Source="{Binding ImageUrl}" WidthRequest="50" HeightRequest="300" VerticalOptions="Start" Aspect="Fill"/>
+                                <StackLayout Grid.Row="1" Margin="10,-10,10,0" Orientation="Vertical">
+                                    <Label Text="{Binding Name}" TextColor="White" FontSize="Subtitle"/>
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+            <Grid x:Name="GridOverlay"
+                  IsVisible="False"
+                  ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.6*" />
+                    <ColumnDefinition Width="0.4*" />
+                </Grid.ColumnDefinitions>
+                <StackLayout BackgroundColor="#7744c2"
+                             x:Name="SlMenu">
+                    <StackLayout Spacing="30"
+                                 Orientation="Horizontal"
+                                 Margin="20,0,0,0">
+                        <Image Source="about.png"
+                               HeightRequest="30"
+                               WidthRequest="30" />
+                        <Label Text="About"
+                               TextColor="White"
+                               HeightRequest="50"
+                               VerticalTextAlignment="Center"
+                               FontSize="20" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="TapAbout" Tapped="TapAbout_Tapped" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <StackLayout Spacing="30"
+                                 Orientation="Horizontal"
+                                 Margin="20,0,0,0">
+                        <Image Source="contact.png"
+                               HeightRequest="30"
+                               WidthRequest="30" />
+                        <Label Text="Contact"
+                               TextColor="White"
+                               HeightRequest="50"
+                               VerticalTextAlignment="Center"
+                               FontSize="20" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="TapContact" Tapped="TapContact_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <StackLayout Spacing="30"
+                                 Orientation="Horizontal"
+                                 Margin="20,0,0,0">
+                        <Image Source="logout.png"
+                               HeightRequest="30"
+                               WidthRequest="30" />
+                        <Label Text="Logout"
+                               TextColor="White"
+                               HeightRequest="50"
+                               VerticalTextAlignment="Center"
+                               FontSize="20" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="TapLogout" Tapped="TapLogout_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </StackLayout>
+                <BoxView Grid.Column="1"
+                         x:Name="BoxViewLayer">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="TapCloseMenu" Tapped="TapCloseMenu_Tapped" />
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+            </Grid>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

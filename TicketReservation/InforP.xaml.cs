@@ -21,5 +21,9 @@ namespace TicketReservation
         {
             await Navigation.PushAsync(new MapP());
         }
+        private void ImgBack_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync();
+        }
     }
 }

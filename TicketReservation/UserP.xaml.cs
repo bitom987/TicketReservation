@@ -60,10 +60,13 @@ namespace TicketReservation
                     {
                         int ticketammount = Int32.Parse(t.Ammount);
                         price = price * ticketammount;
+                        m.Description = ticketammount.ToString();
                     }
                 }
                 m.TicketPrice = price.ToString();
             }
+            
+           
             TicketListView.ItemsSource = movies;
         }
         private async void CollectionView_MovieSelected(object sender, SelectionChangedEventArgs e)
@@ -74,6 +77,10 @@ namespace TicketReservation
             {
                 await Navigation.PushAsync(new MoviesDetailP(itemSelected.Id, _ticket.UserId));
             }
+        }
+        private void ImgBack_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new MoviesListP(_ticket.UserId));
         }
 
     }
