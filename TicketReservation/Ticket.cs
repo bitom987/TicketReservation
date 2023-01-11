@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Firebase.Auth;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,8 +7,8 @@ namespace TicketReservation
 {
     public class Ticket
     {
-        public int id { get; set; }
-        public string moviesId { get; set; }
-        public string userId { get; set; }
+        public string Ammount { get; set; }
+        public string MoviesId { get; set; }
+        public string UserId { get; set; }
     }
 }

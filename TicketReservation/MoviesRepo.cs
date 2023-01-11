@@ -32,5 +32,11 @@ namespace TicketReservation
                 TrailorUrl = item.Object.TrailorUrl
             }).ToList();
         }
+        public async Task<Movies>GetMovieById(string id)
+        {
+            return (await firebaseClient
+                .Child(("Movies")+"/"+id)
+                .OnceSingleAsync<Movies>());
+        }
     }
 }

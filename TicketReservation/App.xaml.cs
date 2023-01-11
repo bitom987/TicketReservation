@@ -12,7 +12,8 @@ namespace TicketReservation
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new MoviesListP());
+            Device.SetFlags(new string[] { "MediaElement_Experimental" });
+            MainPage = new NavigationPage(new LoginP());
         }
 
         protected override void OnStart()

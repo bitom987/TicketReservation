@@ -4,6 +4,7 @@ using Firebase.Database.Query;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -22,9 +23,10 @@ namespace TicketReservation
         public async Task<bool> Register(User user)
         {
             var token = await authProvider.CreateUserWithEmailAndPasswordAsync(user.Email, user.Password);
-            // lưu uid mới tạo vào db
+            // lưu uid làm key - Email làm value vào db
             var uid = token.User.LocalId;
-            await firebaseClient.Child(nameof(User)).Child(uid).PutAsync(JsonConvert.SerializeObject(user));
+            // Khởi tạo dữ liệu cho database
+            await firebaseClient.Child("User").Child(uid).Child("Email").PutAsync(JsonConvert.SerializeObject(user.Email));
             // lưu email uid
             if (!string.IsNullOrEmpty(token.FirebaseToken))
             {
@@ -35,6 +37,8 @@ namespace TicketReservation
         public async Task<string> SignIn(User user)
         {
             var token = await authProvider.SignInWithEmailAndPasswordAsync(user.Email, user.Password);
+            var uid = token.User.LocalId;
+            user.Id = uid;
             if (!string.IsNullOrEmpty(token.FirebaseToken))
             {
                 return token.FirebaseToken;
@@ -46,14 +50,9 @@ namespace TicketReservation
             await authProvider.SendPasswordResetEmailAsync(user.Email);
             return true;
         }
-        public async Task<User> GetInfoById()
+        public async Task<User> GetInfoById(User user)
         {
-            string id="";
-            var savedfirebaseauth = JsonConvert.DeserializeObject<FirebaseAuth>(Preferences.Get("MyFirebaseRefreshToken", ""));
-            var refreshedcontent = await authProvider.RefreshAuthAsync(savedfirebaseauth);
-            Preferences.Set("MyFirebaseRefreshToken", JsonConvert.SerializeObject(refreshedcontent));
-            id = savedfirebaseauth.User.LocalId;
-            return (await firebaseClient.Child(nameof(User) + "/" + id).OnceSingleAsync<User>());
+            return (await firebaseClient.Child(nameof(User) + "/" + user.Id).OnceSingleAsync<User>());
         }
     }
 

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TicketReservation.InforP"
+             BackgroundColor="#171724">
+    <ContentPage.Content>
+        <StackLayout Margin="20" 
+                     Spacing="15" 
+                     >
+                <Image Source="contact.png" HeightRequest="100" />
+            <StackLayout Margin="0,20,0,0">
+                <Label Text="Địa chỉ" 
+                    Margin="0, 20, 0 ,0"
+                   FontSize="30" 
+                   HorizontalTextAlignment="Start"
+                   TextColor="White"/>
+                <Label Text="Đại học Công nghệ Thông tin, đường Hàn Thuyên, khu phố 6, Thủ Đức, Thành phố Hồ Chí Minh" 
+                   FontSize="15" 
+                   Margin="0, 0, 0 ,10"
+                   HorizontalTextAlignment="Start"
+                   TextColor="White"/>
+               
+                <Label Text="Số điện thoại" 
+                   Margin="0, 20, 0 ,0"
+                   FontSize="30" 
+                   HorizontalTextAlignment="Start"
+                   TextColor="White"/>
+                <Label Text="0900200301" 
+                   FontSize="15" 
+                   Margin="0, 0, 0 ,10"
+                   HorizontalTextAlignment="Start"
+                   TextColor="White"/>
+                <Label Text="Email" 
+                   Margin="0, 20, 0 ,0"
+                   FontSize="30" 
+                   HorizontalTextAlignment="Start"
+                   TextColor="White"/>
+                <Label Text="19522129@gm.uit.edu.vn" 
+                   FontSize="15" 
+                   HorizontalTextAlignment="Start"
+                   Margin="0, 0, 0 ,10"
+                   TextColor="White"/>
+                <Label Text="Website" 
+                   Margin="0, 20, 0 ,0"
+                   FontSize="30" 
+                   HorizontalTextAlignment="Start"
+                   TextColor="White"/>
+                <Button Text="Chi tiết"
+                        BackgroundColor="Transparent"
+                        TextColor="blue"
+                        x:Name="ToMap"
+                        HorizontalOptions="Start"
+                        Clicked="ToMap_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

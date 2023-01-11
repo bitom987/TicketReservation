@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xct:Popup xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             Size="350,350"
+             x:Class="TicketReservation.BookTicketPopup"
+            xmlns:renderers="clr-namespace:TicketReservation.Renderers"
+             Color="#7744c2">
+    <StackLayout  Padding="20" Spacing="15">
+        <StackLayout Margin="0,0,0,10">
+            <Label Text="Chọn địa điểm" 
+                       TextColor="White"
+                        FontSize="20"
+                       HorizontalTextAlignment="Start"
+                           />
+            <renderers:CustomPicker Title="Location" 
+                        TitleColor="Black"
+                        TextColor="Black"
+                        BackgroundColor="White"
+                        HeightRequest="40"
+                        >
+                <Picker.Items>
+                    <x:String>làng đại học</x:String>
+                    <x:String>Quận 1</x:String>
+                    <x:String>Quận 3</x:String>
+                </Picker.Items>
+            </renderers:CustomPicker>
+        </StackLayout>
+        <StackLayout>
+            <Label Text="Số lượng vé" 
+                       TextColor="White"
+                        FontSize="20"
+                       HorizontalTextAlignment="Start"
+                           />
+            <renderers:CustomPicker Title="Ticket" 
+                        TitleColor="Black"
+                        TextColor="Black"
+                        BackgroundColor="White"
+                        HeightRequest="40"
+                        >
+                <Picker.Items>
+                    <x:String>1</x:String>
+                    <x:String>2</x:String>
+                    <x:String>3</x:String>
+                    <x:String>4</x:String>
+                    <x:String>5</x:String>
+                    <x:String>6</x:String>
+                    <x:String>7</x:String>
+                    <x:String>8</x:String>
+                    <x:String>9</x:String>
+                    <x:String>10</x:String>
+                </Picker.Items>
+            </renderers:CustomPicker>
+        </StackLayout>
+        <Button Margin="0,10,0,0" Text="Đặt vé" x:Name="Booked" BackgroundColor="#171724" TextColor="White"/>
+    </StackLayout>
+</xct:Popup>

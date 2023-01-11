@@ -14,6 +14,7 @@ namespace TicketReservation
 	public partial class SignupP : ContentPage
 	{
         UserRepo _userRepo = new UserRepo();
+
 		public SignupP ()
 		{
 			InitializeComponent ();
@@ -49,7 +50,6 @@ namespace TicketReservation
                     return;
                 }
                 bool IsSave = await _userRepo.Register(user);
-                await DisplayAlert("Thông báo", "This:" + IsSave, "Ok");
                 if (IsSave)
                 {
                     await DisplayAlert("Thông báo", "Đăng ký thành công", "Đăng nhập");

@@ -28,10 +28,9 @@ namespace TicketReservation
                 user.Email = email;
                 user.Password = password;
                 string token = await _userRepo.SignIn(user);
-                await DisplayAlert("Token", token.ToString(), "Ok");
                 if (!string.IsNullOrEmpty(token))
                 {
-                    await DisplayAlert("Thông báo", "Thành công", "Ok");
+                    await Navigation.PushAsync(new MoviesListP(user.Id));
                 }
                 else
                 {

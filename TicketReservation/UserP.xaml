@@ -1,0 +1,103 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TicketReservation.UserP"
+             BackgroundColor="#171724">
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="DodgerBlue" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Margin="20" Spacing="15">
+            <Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="popcorn.png"
+                       Grid.Column="0"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="TapMenu" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label
+                       x:Name="UserEmail"
+                        Margin="0,0,0,0"
+                       TextColor="White"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontSize="Large"
+                       Grid.Column="0" />
+                    <StackLayout 
+                        Grid.Column="3" 
+                        Orientation="Horizontal" 
+                        HorizontalOptions="FillAndExpand" 
+                        VerticalOptions="Center" 
+                        HeightRequest="40"
+                        >
+                        <ImageButton
+                        Source="logout.png"
+                        BackgroundColor="Transparent"
+                        x:Name="LogOut" 
+                        Clicked="LogOut_Clicked"/>
+                    </StackLayout>
+
+                </Grid>
+            </Grid>
+            <Label Text="Danh sách vé" TextColor="White" FontSize="Large"/>
+            <CollectionView x:Name="TicketListView"
+                            SelectionMode="Single"
+                            SelectionChanged="CollectionView_MovieSelected">
+                <CollectionView.EmptyView>
+                    <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="No Data" FontSize="Medium" TextColor="White"/>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" Padding="5">
+                            <StackLayout Orientation="Horizontal" Padding="5">
+                                <Image Margin="10" Source="{Binding ImageUrl}" WidthRequest="100" HeightRequest="150" VerticalOptions="Start" Aspect="Fill"/>
+                                <StackLayout Margin="10,0,10,0" Orientation="Vertical">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Tên Phim: " TextColor="White" FontSize="Subtitle"/>
+                                        <Label Text="{Binding Name}" TextColor="White" FontSize="Subtitle" Margin="0"/>
+                                    </StackLayout>
+                                    <StackLayout>
+                                        <Label Text="Ngày chiếu: " TextColor="White" FontSize="Subtitle"/>
+                                        <Label Text="{Binding PlayingDate}" TextColor="White" FontSize="Subtitle" Margin="0"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Giờ chiếu: " TextColor="White" FontSize="Subtitle"/>
+                                        <Label Text="{Binding PlayingTime}" TextColor="White" FontSize="Subtitle" Margin="0"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Giá: " TextColor="White" FontSize="Subtitle"/>
+                                        <Label Text="{Binding TicketPrice}" TextColor="White" FontSize="Subtitle" Margin="0"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
